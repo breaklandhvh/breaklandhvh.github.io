@@ -81,23 +81,6 @@
             animation: button-glitch 0.3s infinite;
         }
 
-        /* Реальный счетчик просмотров */
-        .views-counter {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.85rem;
-        }
-        .views-counter img {
-            height: 20px;
-            filter: drop-shadow(0 0 3px #55ff55);
-        }
-
         /* Заставка перед входом */
         #overlay {
             position: fixed;
@@ -124,77 +107,122 @@
             border: 2px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             width: 100%;
-            max-width: 480px;
-            padding: 40px 30px;
+            max-width: 550px;
+            padding: 50px 30px;
             text-align: center;
             position: relative;
             z-index: 5;
             box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
         }
 
-        .avatar-container {
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 20px auto;
-            position: relative;
-            cursor: pointer;
-        }
-        .avatar {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #55ff55;
-            box-shadow: 0 0 15px rgba(85, 255, 85, 0.4);
-        }
-
         .logo {
-            font-size: 2.8rem;
+            font-size: 3.5rem;
             font-weight: 900;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             color: #eeeeee;
-            text-shadow: 3px 3px #ff0055, -3px -3px #00ffaa;
+            text-shadow: 4px 4px #ff0055, -4px -4px #00ffaa;
             animation: glitch 2.5s infinite;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            margin-top: -10px;
         }
 
         .footer-text {
             color: #55ff55;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
+            font-size: 1.3rem;
+            letter-spacing: 3px;
             text-transform: lowercase;
             text-shadow: 0 0 8px rgba(85, 255, 85, 0.5);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         .cursor { display: inline-block; animation: blink 0.8s infinite; }
 
+        /* Обновленный музыкальный плеер */
         .now-playing {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 10px;
-            font-size: 0.8rem;
+            padding: 12px 20px;
+            font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
+            justify-content: space-between; /* Распределяем элементы управления */
+            gap: 15px;
         }
-        .now-playing i { color: #ff0055; animation: pulse 1s infinite; }
+        
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Кнопка паузы */
+        .play-pause-btn {
+            color: #ff0055;
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
+            font-size: 1rem;
+        }
+        .play-pause-btn:hover {
+            transform: scale(1.1);
+            color: #55ff55;
+        }
+
+        /* Контейнер кастомного ползунка громкости */
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .volume-container i {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8rem;
+        }
+        
+        /* Стилизация ползунка */
+        .volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 70px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            background-image: linear-gradient(#55ff55, #55ff55);
+            background-size: 40% 100%; /* Дефолтное значение под 0.4 громкости */
+            background-repeat: no-repeat;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: width 0.3s ease;
+        }
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            background: #55ff55;
+            box-shadow: 0 0 5px #55ff55;
+        }
+        .volume-slider::-moz-range-thumb {
+            height: 10px;
+            width: 10px;
+            border: none;
+            border-radius: 50%;
+            background: #55ff55;
+            box-shadow: 0 0 5px #55ff55;
+        }
 
         .links-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
         }
         .btn {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 55px;
-            height: 55px;
-            font-size: 1.7rem;
+            width: 65px;
+            height: 65px;
+            font-size: 2rem;
             color: #ffffff;
             background: transparent;
             border: 2px solid rgba(255, 255, 255, 0.2);
@@ -202,43 +230,17 @@
             text-decoration: none;
             transition: all 0.3s ease;
         }
-        .btn-steam:hover { color: #00ffaa; border-color: #00ffaa; box-shadow: 0 0 20px rgba(0, 255, 170, 0.4); animation: button-glitch 0.3s infinite; }
-        .btn-tg:hover { color: #ff0055; border-color: #ff0055; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); animation: button-glitch 0.3s infinite; }
-
-        /* ==========================================
-           ПАНЕЛЬ УПРАВЛЕНИЯ (АДМИНКА)
-           ========================================== */
-        .admin-panel {
-            position: fixed;
-            top: 0; right: -350px;
-            width: 320px; height: 100vh;
-            background: rgba(10, 10, 10, 0.95);
-            border-left: 2px solid #55ff55;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-            z-index: 1000;
-            padding: 25px;
-            overflow-y: auto;
-            transition: right 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
-            backdrop-filter: blur(5px);
-        }
-        .admin-panel.open { right: 0; }
-        .admin-panel h3 { color: #55ff55; margin-bottom: 20px; font-size: 1.1rem; letter-spacing: 1px; border-bottom: 1px dashed #55ff55; padding-bottom: 5px; }
-        .admin-group { margin-bottom: 15px; }
-        .admin-group label { display: block; font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-bottom: 5px; text-transform: uppercase; }
-        .admin-group input { width: 100%; background: #151515; border: 1px solid rgba(255,255,255,0.2); padding: 8px; color: #fff; font-family: monospace; font-size: 0.8rem; }
-        .admin-group input:focus { border-color: #55ff55; outline: none; }
-        .admin-btn { width: 100%; background: transparent; border: 1px solid #55ff55; color: #55ff55; padding: 10px; font-family: monospace; cursor: pointer; font-weight: bold; margin-top: 10px; transition: all 0.2s; }
-        .admin-btn:hover { background: #55ff55; color: #000; }
-        .close-admin { font-size: 0.75rem; color: #ff0055; text-align: center; margin-top: 15px; cursor: pointer; text-decoration: underline; }
+        .btn-steam:hover { color: #00ffaa; border-color: #00ffaa; box-shadow: 0 0 25px rgba(0, 255, 170, 0.4); animation: button-glitch 0.3s infinite; }
+        .btn-tg:hover { color: #ff0055; border-color: #ff0055; box-shadow: 0 0 25px rgba(255, 0, 85, 0.4); animation: button-glitch 0.3s infinite; }
 
         /* Анимации */
         @keyframes glitch {
-            0% { text-shadow: 3px 3px #ff0055, -3px -3px #00ffaa; transform: skew(0deg); }
-            30% { text-shadow: 3px 3px #ff0055, -3px -3px #00ffaa; transform: skew(0deg); }
-            31% { text-shadow: -5px 2px #ff0055, 5px -2px #00ffaa; transform: skew(-4deg); }
-            33% { text-shadow: 5px -2px #ff0055, -4px 3px #00ffaa; transform: skew(3deg); }
-            34% { text-shadow: 3px 3px #ff0055, -3px -3px #00ffaa; transform: skew(0deg); }
-            100% { text-shadow: 3px 3px #ff0055, -3px -3px #00ffaa; transform: skew(0deg); }
+            0% { text-shadow: 4px 4px #ff0055, -4px -4px #00ffaa; transform: skew(0deg); }
+            30% { text-shadow: 4px 4px #ff0055, -4px -4px #00ffaa; transform: skew(0deg); }
+            31% { text-shadow: -6px 3px #ff0055, 6px -3px #00ffaa; transform: skew(-5deg); }
+            33% { text-shadow: 6px -3px #ff0055, -5px 4px #00ffaa; transform: skew(4deg); }
+            34% { text-shadow: 4px 4px #ff0055, -4px -4px #00ffaa; transform: skew(0deg); }
+            100% { text-shadow: 4px 4px #ff0055, -4px -4px #00ffaa; transform: skew(0deg); }
         }
         @keyframes button-glitch { 0% { transform: translate(0); } 20% { transform: translate(-1px, 1px); } 40% { transform: translate(1px, -1px); } 100% { transform: translate(0); } }
         @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
@@ -253,189 +255,92 @@
         <div class="click-text">[ CLICK TO ENTER ]</div>
     </div>
 
-    <a href="" id="cheat-link" target="_blank" class="top-left-link">> best cheat</a>
-    <div class="views-counter">VIEWS: <img id="real-views" src="" alt="Views"></div>
+    <a href="https://nixware.cc" target="_blank" class="top-left-link">> best cheat</a>
 
     <div class="bio-card">
-        <div class="avatar-container" onclick="countClick()" title="Секретное меню">
-            <img src="" id="user-avatar" alt="avatar" class="avatar">
-        </div>
-
-        <h1 class="logo" id="user-name"></h1>
-        <p class="footer-text" id="user-status"><span class="cursor">_</span></p>
+        <h1 class="logo">breaklandhvh</h1>
+        <p class="footer-text">hvh founder<span class="cursor">_</span></p>
 
         <div class="now-playing">
-            <i class="fa-solid fa-music"></i>
-            <span id="track-title"></span>
+            <div class="player-controls">
+                <i class="fa-solid fa-music play-pause-btn" id="play-icon" onclick="toggleMusic()" title="Пауза/Плей"></i>
+                <span id="track-status">Playing: hvh_track.mp3</span>
+            </div>
+            
+            <div class="volume-container">
+                <i class="fa-solid fa-volume-low"></i>
+                <input type="range" min="0" max="1" step="0.01" value="0.4" class="volume-slider" id="volume-control">
+            </div>
         </div>
         
         <div class="links-container">
-            <a href="" id="steam-link" target="_blank" class="btn btn-steam" title="Steam">
+            <a href="https://steamcommunity.com/profiles/76561198987439384/" target="_blank" class="btn btn-steam" title="Steam">
                 <i class="fa-brands fa-steam"></i>
             </a>
-            <a href="" id="tg-link" target="_blank" class="btn btn-tg" title="Telegram">
+            <a href="https://t.me/scum0fsociety" target="_blank" class="btn btn-tg" title="Telegram">
                 <i class="fa-brands fa-telegram"></i>
             </a>
         </div>
     </div>
 
-    <div class="admin-panel" id="adminPanel">
-        <h3>⚡ CONTROL PANEL</h3>
-        <div class="admin-group">
-            <label>Никнейм</label>
-            <input type="text" id="inp-nick">
-        </div>
-        <div class="admin-group">
-            <label>Статус</label>
-            <input type="text" id="inp-status">
-        </div>
-        <div class="admin-group">
-            <label>Ссылка на Аватарку</label>
-            <input type="text" id="inp-avatar">
-        </div>
-        <div class="admin-group">
-            <label>Ссылка на чит</label>
-            <input type="text" id="inp-cheat">
-        </div>
-        <div class="admin-group">
-            <label>Ссылка на Steam</label>
-            <input type="text" id="inp-steam">
-        </div>
-        <div class="admin-group">
-            <label>Ссылка на Telegram</label>
-            <input type="text" id="inp-tg">
-        </div>
-        <div class="admin-group">
-            <label>Прямая ссылка на музыку (.mp3)</label>
-            <input type="text" id="inp-music">
-        </div>
-        <div class="admin-group">
-            <label>Название трека в профиле</label>
-            <input type="text" id="inp-m-title">
-        </div>
-        <button class="admin-btn" onclick="saveConfig()">СОХРАНИТЬ</button>
-        <div class="close-admin" onclick="toggleAdmin()">Закрыть панель</div>
-    </div>
-
     <audio id="bg-music" loop>
-        <source id="music-src" src="" type="audio/mpeg">
+        <source src="https://www.image2url.com/r2/default/audio/1779825707135-c174d089-0f0a-4ee9-9a12-974158b3904b.mp3" type="audio/mpeg">
     </audio>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        // Дефолтный конфиг (если в кэше еще ничего нет)
-        const DEFAULT_CONFIG = {
-            nickname: "breaklandhvh",
-            status: "hvh founder",
-            avatarUrl: "https://imgur.com/a/2X9cAgh",
-            cheatUrl: "https://nixware.cc",
-            steamUrl: "https://steamcommunity.com/profiles/76561198987439384/",
-            telegramUrl: "https://t.me/scum0fsociety",
-            musicUrl: "https://www.image2url.com/r2/default/audio/1779825707135-c174d089-0f0a-4ee9-9a12-974158b3904b.mp3",
-            musicTitle: "sha gz - poppa perry"
-        };
+        const audio = document.getElementById('bg-music');
+        const playIcon = document.getElementById('play-icon');
+        const volumeControl = document.getElementById('volume-control');
+        const trackStatus = document.getElementById('track-status');
 
-        let currentConfig = JSON.parse(localStorage.getItem('site_config')) || DEFAULT_CONFIG;
-
-        // Функция обновления контента на странице
-        function applyConfig() {
-            document.getElementById('user-name').innerText = currentConfig.nickname;
-            document.getElementById('user-status').innerHTML = `${currentConfig.status}<span class="cursor">_</span>`;
-            document.getElementById('user-avatar').src = currentConfig.avatarUrl;
-            document.getElementById('cheat-link').href = currentConfig.cheatUrl;
-            document.getElementById('steam-link').href = currentConfig.steamUrl;
-            document.getElementById('tg-link').href = currentConfig.telegramUrl;
-            document.getElementById('track-title').innerText = `Playing: ${currentConfig.musicTitle}`;
-            document.getElementById('music-src').src = currentConfig.musicUrl;
-
-            // Заполняем поля в админке текущими значениями
-            document.getElementById('inp-nick').value = currentConfig.nickname;
-            document.getElementById('inp-status').value = currentConfig.status;
-            document.getElementById('inp-avatar').value = currentConfig.avatarUrl;
-            document.getElementById('inp-cheat').value = currentConfig.cheatUrl;
-            document.getElementById('inp-steam').value = currentConfig.steamUrl;
-            document.getElementById('inp-tg').value = currentConfig.telegramUrl;
-            document.getElementById('inp-music').value = currentConfig.musicUrl;
-            document.getElementById('inp-m-title').value = currentConfig.musicTitle;
-
-            // Реальные просмотры
-            document.getElementById('real-views').src = `https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2F${currentConfig.nickname}.github.io&count_bg=%23030303&title_bg=%23030303&icon=&icon_color=%23E7E7E7&title=views&edge_flat=true`;
-        }
-
-        // Сохранение новых данных из админки
-        function saveConfig() {
-            currentConfig = {
-                nickname: document.getElementById('inp-nick').value,
-                status: document.getElementById('inp-status').value,
-                avatarUrl: document.getElementById('inp-avatar').value,
-                cheatUrl: document.getElementById('inp-cheat').value,
-                steamUrl: document.getElementById('inp-steam').value,
-                telegramUrl: document.getElementById('inp-tg').value,
-                musicUrl: document.getElementById('inp-music').value,
-                musicTitle: document.getElementById('inp-m-title').value
-            };
-            localStorage.setItem('site_config', JSON.stringify(currentConfig));
-            applyConfig();
-            
-            // Если играет музыка, перезапускаем её под новый трек
-            const audio = document.getElementById('bg-music');
-            if (!audio.paused) {
-                audio.load();
-                audio.play();
-            }
-            
-            toggleAdmin();
-        }
-
-        // Переключение видимости админки
-        function toggleAdmin() {
-            document.getElementById('adminPanel').classList.toggle('open');
-        }
-
-        // Вызов админки по кнопкам Ctrl+Shift+X
-        window.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.shiftKey && e.code === 'KeyX') {
-                toggleAdmin();
-            }
-        });
-
-        // Альтернативный вызов: 3 клика по аватарке (для мобилок)
-        let clickCount = 0;
-        function countClick() {
-            clickCount++;
-            if (clickCount >= 3) {
-                toggleAdmin();
-                clickCount = 0;
-            }
-            setTimeout(() => { clickCount = 0; }, 2000);
-        }
-
-        // Запуск анимации тайтла вкладки
-        let titleIndex = 0;
+        // Анимация названия вкладки
+        const nickname = "breaklandhvh";
+        let index = 0;
         setInterval(() => {
-            let nick = currentConfig.nickname;
             let animatedText = "";
-            for (let i = 0; i < nick.length; i++) {
-                animatedText += (i === titleIndex) ? nick[i].toUpperCase() : nick[i].toLowerCase();
+            for (let i = 0; i < nickname.length; i++) {
+                animatedText += (i === index) ? nickname[i].toUpperCase() : nickname[i].toLowerCase();
             }
             document.title = animatedText;
-            titleIndex = (titleIndex + 1) % nick.length;
+            index = (index + 1) % nickname.length;
         }, 200);
 
-        // Старт сайта при клике на оверлей
+        // Вход и старт музыки
         function startBio() {
             document.getElementById('overlay').style.opacity = '0';
             setTimeout(() => { document.getElementById('overlay').style.display = 'none'; }, 500);
             
-            const audio = document.getElementById('bg-music');
-            audio.load();
             audio.volume = 0.4;
-            audio.play().catch(e => console.log("Браузер блочит звук:", e));
+            audio.play().catch(e => console.log("Автоплей заблокирован:", e));
         }
 
-        // Инициализация
-        applyConfig();
+        // Функция Паузы / Плея
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                playIcon.className = "fa-solid fa-music play-pause-btn"; // Возвращаем ноту
+                trackStatus.innerText = "Playing: hvh_track.mp3";
+                playIcon.style.animation = "pulse 1s infinite";
+            } else {
+                audio.pause();
+                playIcon.className = "fa-solid fa-play play-pause-btn"; // Меняем на иконку "Play"
+                trackStatus.innerText = "Paused";
+                playIcon.style.animation = "none";
+            }
+        }
 
+        // Управление громкостью и закрашивание ползунка
+        volumeControl.addEventListener('input', (e) => {
+            const val = e.target.value;
+            audio.volume = val;
+            
+            // Динамически закрашиваем зелёным пройденный путь ползунка
+            const percentage = val * 100;
+            e.target.style.backgroundSize = percentage + '% 100%';
+        });
+
+        // Запуск фоновых частиц
         particlesJS("particles-js", {
             "particles": {
                 "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
