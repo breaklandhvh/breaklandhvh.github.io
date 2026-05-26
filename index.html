@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>breaklandhvh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #050505; color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex; justify-content: center; align-items: center;
+            width: 100vw; height: 100vh; overflow: hidden; position: relative;
+        }
+        body::before {
+            content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.04));
+            z-index: 10; background-size: 100% 4px, 6px 100%; pointer-events: none;
+        }
+        body::after {
+            content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+            background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%);
+            z-index: 9; pointer-events: none;
+        }
+        .top-left-link {
+            position: absolute; top: 15px; left: 20px; z-index: 20; color: #55ff55;
+            font-size: 0.85rem; font-weight: bold; text-transform: uppercase;
+            text-decoration: none; letter-spacing: 2px; text-shadow: 0 0 5px rgba(85, 255, 85, 0.6);
+            transition: all 0.2s ease;
+        }
+        .top-left-link:hover {
+            color: #ffffff; text-shadow: 2px 2px #ff0055, -2px -2px #00ffaa;
+            animation: button-glitch 0.3s infinite;
+        }
+        .wrapper {
+            display: grid; grid-template-columns: 250px 1fr 250px; gap: 20px;
+            width: 95%; max-width: 1300px; height: 80vh; z-index: 2; margin-top: 20px;
+        }
+        .terminal-panel {
+            border: 2px dashed rgba(220, 220, 220, 0.3); background: rgba(10, 10, 10, 0.7);
+            padding: 20px; overflow: hidden; position: relative; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .log-panel { font-size: 0.75rem; color: #55ff55; display: flex; flex-direction: column; gap: 5px; }
+        .log-title {
+            color: #fff; border-bottom: 1px solid rgba(220, 220, 220, 0.3);
+            padding-bottom: 5px; margin-bottom: 10px; font-weight: bold; letter-spacing: 1px;
+        }
+        .info-panel { font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); line-height: 1.6; }
+        .info-panel span { color: #55ff55; }
+        .main-box { display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px dashed #dcdcdc; padding: 40px; text-align: center; }
+        .corner-tag { position: absolute; top: 8px; left: 14px; color: #55ff55; font-weight: bold; font-size: 1.4rem; }
+        .logo {
+            font-size: 3.8rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
+            line-height: 1.1; margin-bottom: 10px; color: #eeeeee;
+            text-shadow: 3px 3px #ff0055, -3px -3px #00ffaa; animation: glitch 2.5s infinite;
+        }
+        .footer-text { color: #55ff55; font-size: 1.4rem; letter-spacing: 3px; text-transform: lowercase; text-shadow: 0 0 8px rgba(85, 255, 85, 0.6); margin-bottom: 35px; }
+        .cursor { display: inline-block; animation: blink 0.8s infinite; }
+        .links-container { display: flex; gap: 15px; }
+        .btn {
+            display: flex; justify-content: center; align-items: center; width: 50px; height: 50px;
+            font-size: 1.5rem; color: #ffffff; background: transparent; border: 2px solid #ffffff;
+            cursor: pointer; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+        }
+        .btn-steam:hover { color: #00ffaa; border-color: #00ffaa; box-shadow: 0 0 15px rgba(0, 255, 170, 0.5); animation: button-glitch 0.3s infinite; }
+        .btn-tg:hover { color: #ff0055; border-color: #ff0055; box-shadow: 0 0 15px rgba(255, 0, 85, 0.5); animation: button-glitch 0.3s infinite; }
+        @keyframes glitch {
+            0% { text-shadow: 3px 3px #ff0055, -3px -3px #00ffaa; transform: skew(0deg); }
+            30% { text-shadow: 3px 3px #ff0055, -3px -3px #00ffaa; transform: skew(0deg); }
+            31% { text-shadow: -5px 2px #ff0055, 5px -2px #00ffaa; transform: skew(-6deg); filter: blur(0.5px); }
+            33% { text-shadow: 5px -2px #ff0055, -4px 3px #00ffaa; transform: skew(4deg); }
+            34% { text-shadow: 3px 3px #ff0055, -3px -3px #00ffaa; transform: skew(0deg); filter: none; }
+            100% { text-shadow: 3px 3px #ff0055, -3px -3px #00ffaa; transform: skew(0deg); }
+        }
+        @keyframes button-glitch {
+            0% { transform: translate(0) skew(0deg); }
+            20% { transform: translate(-1px, 1px) skew(-2deg); }
+            40% { transform: translate(1px, -1px) skew(2deg); }
+            60% { transform: translate(0) skew(0deg); }
+            100% { transform: translate(0) skew(0deg); }
+        }
+        @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+        @media (max-width: 900px) {
+            .top-left-link { position: relative; top: auto; left: auto; margin-bottom: 15px; display: block; text-align: center;}
+            .wrapper { grid-template-columns: 1fr; height: auto; overflow-y: auto; margin-top: 0; }
+            .log-panel, .info-panel { display: none; }
+            .logo { font-size: 2.3rem; }
+            .footer-text { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="https://nixware.cc" target="_blank" class="top-left-link">> best cheat</a>
+
+    <div class="wrapper">
+        <div class="terminal-panel log-panel" id="logPanel">
+            <div class="log-title">> CONSOLE LOGS</div>
+            <div>[INF] Initialize breach...</div>
+            <div>[OK] Kernel mode loaded.</div>
+            <div>[INF] Scanning memory sectors...</div>
+        </div>
+
+        <div class="terminal-panel main-box">
+            <div class="corner-tag">R</div>
+            <h1 class="logo">breaklandhvh</h1>
+            <p class="footer-text">hvh founder<span class="cursor">_</span></p>
+            
+            <div class="links-container">
+                <a href="https://steamcommunity.com/profiles/76561198987439384/" target="_blank" class="btn btn-steam" title="Steam">
+                    <i class="fa-brands fa-steam"></i>
+                </a>
+                <a href="https://t.me/scum0fsociety" target="_blank" class="btn btn-tg" title="Telegram">
+                    <i class="fa-brands fa-telegram"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="terminal-panel info-panel">
+            <div class="log-title">> SYSTEM STATUS</div>
+            <p>USER: <span>admin@breakland</span></p>
+            <p>HOST: <span>localhost</span></p>
+            <p>ACCESS: <span style="color: #55ff55; font-weight: bold;">GRANTED</span></p>
+            <br>
+            <p>NET: <span>127.0.0.1</span></p>
+            <p>BYPASS: <span>ACTIVE</span></p>
+            <p>INJECTOR: <span>READY</span></p>
+            <br>
+            <p>CPU LOAD: <span id="cpuLoad">12%</span></p>
+        </div>
+    </div>
+
+    <script>
+        const text = "breaklandhvh";
+        let index = 0;
+        function animateTitle() {
+            let animatedText = "";
+            for (let i = 0; i < text.length; i++) {
+                if (i === index) animatedText += text[i].toUpperCase();
+                else animatedText += text[i].toLowerCase();
+            }
+            document.title = animatedText;
+            index = (index + 1) % text.length;
+        }
+        setInterval(animateTitle, 200);
+
+        const logPanel = document.getElementById('logPanel');
+        const logMessages = [
+            "[INF] Injecting hvh runtime...", "[OK] Offset bypass verified.", "[WRN] Memory leak blocked.",
+            "[INF] Pinging master server...", "[OK] Response 12ms.", "[INF] Cleaning traces...",
+            "[INF] Entity list updated.", "[OK] Anti-cheat spoofed."
+        ];
+        function addLog() {
+            const randomMsg = logMessages[Math.floor(Math.random() * logMessages.length)];
+            const newLog = document.createElement('div');
+            newLog.innerText = randomMsg;
+            logPanel.appendChild(newLog);
+            if (logPanel.children.length > 22) { logPanel.removeChild(logPanel.children[1]); }
+        }
+        setInterval(addLog, 1500);
+
+        const cpuEl = document.getElementById('cpuLoad');
+        setInterval(() => {
+            const load = Math.floor(Math.random() * (45 - 8 + 1)) + 8;
+            cpuEl.innerText = load + "%";
+        }, 2000);
+    </script>
+</body>
+</html>
